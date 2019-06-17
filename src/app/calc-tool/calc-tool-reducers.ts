@@ -1,16 +1,16 @@
-import { CalcToolActions, CalcToolActionsUnion } from './calc-tool.actions';
+import { CalcToolActions, CalcToolActionsUnion, AddAction, DivideAction, MultiplyAction, SubtractAction } from './calc-tool.actions';
 
 export const resultReducer = (state = 0, action: CalcToolActionsUnion) => {
     //console.log('state: ', state, "action:  ", action);
     switch (action.type) {
         case CalcToolActions.Add:
-            return state + action.value;
+            return state + (action as AddAction).value;
         case CalcToolActions.Subtract:
-            return state - action.value;
+            return state - (action as SubtractAction).value;
         case CalcToolActions.Multiply:
-            return state * action.value;
+            return state * (action as MultiplyAction).value;
         case CalcToolActions.Divide:
-            return state / action.value;
+            return state / (action as DivideAction).value;
         case CalcToolActions.Clear:
             return 0;
         default:

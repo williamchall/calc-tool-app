@@ -27,7 +27,6 @@ export class MultiplyAction implements Action {
 
 export class ClearAction implements Action {
     type = CalcToolActions.Clear;
-    constructor(public value: number) { }
 }
 
 

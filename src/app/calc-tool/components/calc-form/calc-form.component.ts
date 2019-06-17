@@ -51,7 +51,7 @@ export class CalcFormComponent implements OnInit {
     //  this.result$ = this.store.select('result') = '';
     //  this.history$ = this.store.select('history');
     // this.store.dispatch(new ClearHistory());
-    this.store.dispatch(new ClearAction(this.calcForm.value.numInput));
+    this.store.dispatch(new ClearAction());
 
   }
 
