@@ -5,6 +5,7 @@ export enum CalcToolActions {
     Subtract = '[CalcTool] Subtract',
     Multiply = '[CalcTool] Multiply',
     Divide = '[CalcTool] Divide',
+    Clear = '[CalcTool] Clear',
 }
 
 export class AddAction implements Action {
@@ -24,4 +25,11 @@ export class MultiplyAction implements Action {
     constructor(public value: number) { }
 }
 
-export type CalcToolActionsUnion = AddAction | SubtractAction | MultiplyAction | DivideAction;
+export class ClearAction implements Action {
+    type = CalcToolActions.Clear;
+    constructor(public value: number) { }
+}
+
+
+export type CalcToolActionsUnion = AddAction | SubtractAction | MultiplyAction | DivideAction | ClearAction;
+

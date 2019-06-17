@@ -13,5 +13,10 @@
     <button type="button" (click)="doSubtract()">-</button>
     <button type="button" (click)="doMultiply()">*</button>
     <button type="button" (click)="doDivide()">/</button>
+    <button type="button" (click)="doClear()">Clear</button>
+
   </div>
 </form>
+<ul *ngFor="let action of history$ | async">
+  <li>{{action.type}} => {{action.value}}</li>
+</ul>

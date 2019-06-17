@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CalcToolState } from '../../CalcToolState';
 import { Observable } from 'rxjs';
-import { AddAction, SubtractAction, MultiplyAction, DivideAction } from '../../calc-tool.actions';
+import { AddAction, SubtractAction, MultiplyAction, DivideAction, ClearAction } from '../../calc-tool.actions';
 @Component({
   selector: 'app-calc-form',
   templateUrl: './calc-form.component.html',
@@ -12,6 +12,7 @@ import { AddAction, SubtractAction, MultiplyAction, DivideAction } from '../../c
 export class CalcFormComponent implements OnInit {
   //$ not required, denotes stream
   result$: Observable<number>;
+  history$: Observable<Array<any>>;
 
   calcForm: FormGroup;
 
@@ -26,6 +27,8 @@ export class CalcFormComponent implements OnInit {
     });
 
     this.result$ = this.store.select('result');
+    this.history$ = this.store.select('history');
+    console.log('history:  ' + this.history$);
   }
 
   doAdd() {
@@ -42,6 +45,14 @@ export class CalcFormComponent implements OnInit {
 
   doDivide() {
     this.store.dispatch(new DivideAction(this.calcForm.value.numInput));
+  }
+
+  doClear() {
+    //  this.result$ = this.store.select('result') = '';
+    //  this.history$ = this.store.select('history');
+    // this.store.dispatch(new ClearHistory());
+    this.store.dispatch(new ClearAction(this.calcForm.value.numInput));
+
   }
 
 }

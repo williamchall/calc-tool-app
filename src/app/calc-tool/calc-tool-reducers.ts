@@ -1,7 +1,7 @@
 import { CalcToolActions, CalcToolActionsUnion } from './calc-tool.actions';
 
 export const resultReducer = (state = 0, action: CalcToolActionsUnion) => {
-    console.log('state: ', state, "action:  ", action);
+    //console.log('state: ', state, "action:  ", action);
     switch (action.type) {
         case CalcToolActions.Add:
             return state + action.value;
@@ -11,7 +11,23 @@ export const resultReducer = (state = 0, action: CalcToolActionsUnion) => {
             return state * action.value;
         case CalcToolActions.Divide:
             return state / action.value;
+        case CalcToolActions.Clear:
+            return 0;
         default:
             return state;
+    }
+}
+
+export const historyReducer = (history: Array<any>, action: CalcToolActionsUnion) => {
+    if (action.type === CalcToolActions.Clear) {
+        history = new Array(0);
+        return history;
+    } else {
+        //console.log('action.type: ', action.type, "action.value:  ", action.value);
+        if (history === undefined) {
+            history = new Array(0);
+        }
+
+        return history.concat(action);
     }
 }
