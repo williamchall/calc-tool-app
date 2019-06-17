@@ -1,5 +1,5 @@
 import { CalcToolActions, CalcToolActionsUnion, AddAction, DivideAction, MultiplyAction, SubtractAction } from './calc-tool.actions';
-
+import { Action } from '@ngrx/store';
 export const resultReducer = (state = 0, action: CalcToolActionsUnion) => {
     //console.log('state: ', state, "action:  ", action);
     switch (action.type) {
@@ -18,7 +18,7 @@ export const resultReducer = (state = 0, action: CalcToolActionsUnion) => {
     }
 }
 
-export const historyReducer = (history: Array<any>, action: CalcToolActionsUnion) => {
+export const historyReducer = (history: Array<Action>, action: CalcToolActionsUnion) => {
     if (action.type === CalcToolActions.Clear) {
         history = new Array(0);
         return history;
